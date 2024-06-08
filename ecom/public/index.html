@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Enhanced E-Commerce platform for a better shopping experience.">
+    <meta name="keywords" content="e-commerce, online shopping, electronics, gadgets">
+    <title>Enhanced E-Commerce</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico">
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Include FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Include Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+            <a class="navbar-brand" href="#">Enhanced E-Commerce</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <input type="text" id="searchBar" class="form-control" placeholder="Search products..." aria-label="Search products">
+                    </li>
+                    <li class="nav-item">
+                        <button id="cartButton" class="btn btn-outline-primary" aria-label="View cart" onclick="window.location.href='cart.html'">Cart (<span id="cartCount">0</span>)</button>
+                    </li>
+                    <li class="nav-item">
+                        <button id="loginButton" class="btn btn-outline-secondary" onclick="window.location.href='login.html'">Login</button>
+                    </li>
+                    <li class="nav-item">
+                        <button id="registerButton" class="btn btn-outline-secondary" onclick="window.location.href='create.html'">Register</button>
+                    </li>
+                    <li class="nav-item">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="darkModeSwitch">
+                            <label class="form-check-label" for="darkModeSwitch">Dark Mode</label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="container mt-4">
+        <section id="filter" class="mb-4">
+            <label for="priceRange">Filter by price:</label>
+            <input type="range" id="priceRange" class="form-control-range" name="priceRange" min="0" max="1000">
+            <span id="priceValue">Max Price: $1000</span>
+        </section>
+        <section id="products">
+            <h2>Products</h2>
+            <div class="product-container row">
+                <div class="col-md-4 mb-4">
+                    <div class="product card h-100" data-price="250" data-name="Stylish Headphones" data-image-url="images/headphones.jpg">
+                        <img src="images/headphones.jpg" class="card-img-top" alt="Stylish Headphones">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Stylish Headphones</h5>
+                            <p class="card-text">$250</p>
+                            <p class="card-text flex-grow-1">High-quality sound and noise cancellation.</p>
+                            <button class="btn btn-primary mt-auto add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="product card h-100" data-price="150" data-name="Ergonomic Keyboard" data-image-url="images/keyboard.jpg">
+                        <img src="images/keyboard.jpg" class="card-img-top" alt="Ergonomic Keyboard">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Ergonomic Keyboard</h5>
+                            <p class="card-text">$150</p>
+                            <p class="card-text flex-grow-1">Comfortable and stylish keyboard.</p>
+                            <button class="btn btn-primary mt-auto add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="product card h-100" data-price="300" data-name="4K Monitor" data-image-url="images/monitor.jpg">
+                        <img src="images/monitor.jpg" class="card-img-top" alt="4K Monitor">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">4K Monitor</h5>
+                            <p class="card-text">$300</p>
+                            <p class="card-text flex-grow-1">Crystal clear display with 4K resolution.</p>
+                            <button class="btn btn-primary mt-auto add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="product card h-100" data-price="50" data-name="Wireless Mouse" data-image-url="images/mouse.jpg">
+                        <img src="images/mouse.jpg" class="card-img-top" alt="Wireless Mouse">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Wireless Mouse</h5>
+                            <p class="card-text">$50</p>
+                            <p class="card-text flex-grow-1">Smooth and responsive wireless mouse.</p>
+                            <button class="btn btn-primary mt-auto add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="product card h-100" data-price="200" data-name="Bluetooth Speaker" data-image-url="images/speaker.jpg">
+                        <img src="images/speaker.jpg" class="card-img-top" alt="Bluetooth Speaker">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Bluetooth Speaker</h5>
+                            <p class="card-text">$200</p>
+                            <p class="card-text flex-grow-1">Portable speaker with excellent sound quality.</p>
+                            <button class="btn btn-primary mt-auto add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="cartSummary" class="mt-4">
+            <h2>Your Cart</h2>
+            <ul id="cartItemsSummary" class="list-group">
+                <li class="list-group-item">Your cart is empty.</li>
+            </ul>
+            <div id="cartTotalContainer" class="mt-2">
+                <span id="cartTotal">Total: $0.00 USD</span>
+            </div>
+            <button id="checkoutButton" class="btn btn-success mt-2">Checkout</button>
+            <button id="emptyCartButton" class="btn btn-danger mt-2">Empty Cart</button>
+        </section>
+    </main>
+    <div id="loader"></div>
+    <div id="feedback"></div>
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container">
+            <p class="text-muted">&copy; 2024 Enhanced E-Commerce. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.0/lazysizes.min.js" async></script>
+    <script src="js/cart.js"></script>
+    <script src="js/darkMode.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add to cart functionality
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', () => {
+                    const productCard = button.closest('.product');
+                    const productName = productCard.getAttribute('data-name');
+                    const productPrice = parseFloat(productCard.getAttribute('data-price'));
+                    const productImage = productCard.getAttribute('data-image-url');
+                    addToCart(productName, productPrice, productImage);
+                });
+            });
+
+            // Function to add product to cart
+            function addToCart(name, price, imageUrl) {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const existingProduct = cart.find(product => product.name === name);
+
+                if (existingProduct) {
+                    existingProduct.quantity += 1;
+                } else {
+                    cart.push({ name, price, imageUrl, quantity: 1 });
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartUI();
+                showFeedback('Product added to cart', 'success');
+            }
+
+            // Function to update cart UI
+            function updateCartUI() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const cartItemsSummary = document.getElementById('cartItemsSummary');
+                cartItemsSummary.innerHTML = '';
+
+                let total = 0;
+
+                cart.forEach(item => {
+                    total += item.price * item.quantity;
+
+                    const li = document.createElement('li');
+                    li.className = 'list-group-item d-flex justify-content-between align-items-center';
+                    li.innerHTML = `
+                        <div>
+                            <img src="${item.imageUrl}" alt="${item.name}" style="width: 50px; height: auto;">
+                            <span>${item.name} (${item.quantity} x $${item.price.toFixed(2)})</span>
+                        </div>
+                        <button class="btn btn-danger btn-sm remove-from-cart" data-name="${item.name}">Remove</button>
+                    `;
+                    cartItemsSummary.appendChild(li);
+                });
+
+                const salesTax = total * 0.08;
+                const totalWithTax = total + salesTax;
+
+                document.getElementById('cartTotal').textContent = `Total: $${totalWithTax.toFixed(2)} USD`;
+                document.getElementById('cartCount').textContent = cart.length;
+
+                // Attach event listeners for remove buttons
+                document.querySelectorAll('.remove-from-cart').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const name = e.target.getAttribute('data-name');
+                        removeFromCart(name);
+                    });
+                });
+            }
+
+            // Function to remove product from cart
+            function removeFromCart(name) {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cart = cart.filter(product => product.name !== name);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartUI();
+                showFeedback('Product removed from cart', 'success');
+            }
+
+            // Show feedback for user actions
+            function showFeedback(message, type) {
+                const feedback = document.getElementById('feedback');
+                feedback.className = `notification ${type}`;
+                feedback.textContent = message;
+                feedback.style.display = 'block';
+                setTimeout(() => {
+                    feedback.style.display = 'none';
+                }, 3000);
+            }
+
+            // Initialize cart UI on page load
+            updateCartUI();
+        });
+    </script>
+</body>
+</html>

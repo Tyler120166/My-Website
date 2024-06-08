@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A professional account creation page suitable for business-level applications with enhanced security and user interface.">
+    <meta name="keywords" content="register, create account, secure, user interface, business">
+    <meta name="author" content="Your Company Name">
+    <title>Create Account</title>
+    <link rel="icon" href="favicon.ico">
+    <!-- Include FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Include Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            line-height: 1.6;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        header {
+            width: 100%;
+            text-align: center;
+            padding: 20px 0;
+            background: #007bff;
+            color: #fff;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        main {
+            width: 100%;
+            max-width: 500px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        input[type="text"], input[type="password"], input[type="email"], input[type="checkbox"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #007bff;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .form-toggle {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .form-toggle a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .form-toggle a:hover {
+            color: #0056b3;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background: #007bff;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .input-error {
+            border-color: red;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: -15px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        #loader {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #feedback {
+            display: none;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        .success {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .error {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .info {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .warning {
+            background-color: #ff9800;
+            color: white;
+        }
+
+        input:focus, button:focus {
+            outline: 2px solid #0056b3;
+            outline-offset: 2px;
+        }
+
+        .hidden {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .active-form {
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Create Account</h1>
+    </header>
+    <main>
+        <div class="container">
+            <!-- Registration Form -->
+            <form id="registerForm" class="active-form" novalidate>
+                <h2>Create Account</h2>
+                <label for="register-username">Username:</label>
+                <input id="register-username" type="text" name="username" placeholder="Choose a username" required>
+                <span class="error-message"></span>
+
+                <label for="register-email">Email Address:</label>
+                <input id="register-email" type="email" name="email" placeholder="Enter your email" required>
+                <span class="error-message"></span>
+
+                <label for="register-password">Password:</label>
+                <input id="register-password" type="password" name="password" placeholder="Create a password" required>
+                <span class="password-toggle" onclick="togglePasswordVisibility('register-password')"><i class="fa fa-eye"></i></span>
+                <span class="error-message"></span>
+
+                <label for="register-confirm-password">Confirm Password:</label>
+                <input id="register-confirm-password" type="password" name="confirmPassword" placeholder="Confirm your password" required>
+                <span class="password-toggle" onclick="togglePasswordVisibility('register-confirm-password')"><i class="fa fa-eye"></i></span>
+                <span class="error-message"></span>
+
+                <label>
+                    <input type="checkbox" name="terms" required> I agree to the <a href="terms.html">terms and conditions</a>
+                </label>
+                <span class="error-message"></span>
+
+                <button type="submit">Create Account</button>
+                <div class="form-toggle">
+                    <p>Already registered? <a href="login.html">Sign In</a></p>
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+    </footer>
+    <div id="loader"></div>
+    <div id="feedback"></div>
+    <script>
+        function togglePasswordVisibility(passwordFieldId) {
+            const passwordField = document.getElementById(passwordFieldId);
+            const toggleIcon = passwordField.nextElementSibling.querySelector('i');
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                toggleIcon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                passwordField.type = "password";
+                toggleIcon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const registerForm = document.getElementById('registerForm');
+            const loader = document.getElementById('loader');
+            const feedback = document.getElementById('feedback');
+
+            registerForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                if (!validateForm(registerForm)) {
+                    return;
+                }
+                const username = e.target.username.value;
+                const email = e.target.email.value;
+                const password = e.target.password.value;
+                loader.style.display = 'block';
+
+                try {
+                    const response = await fetch('/api/register', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ username, email, password })
+                    });
+                    const data = await response.json();
+                    loader.style.display = 'none';
+
+                    if (data.success) {
+                        feedback.className = 'success';
+                        feedback.textContent = 'Account created successfully. Redirecting to login...';
+                        feedback.style.display = 'block';
+                        setTimeout(() => {
+                            window.location.href = 'login.html';
+                        }, 2000);
+                    } else {
+                        feedback.className = 'error';
+                        feedback.textContent = 'Registration failed: ' + data.message;
+                        feedback.style.display = 'block';
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    loader.style.display = 'none';
+                    feedback.className = 'error';
+                    feedback.textContent = 'An error occurred. Please try again.';
+                    feedback.style.display = 'block';
+                }
+            });
+
+            // Email validation function
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+
+            // Validate form
+            function validateForm(form) {
+                let valid = true;
+                const inputs = form.querySelectorAll('input[required]');
+                
+                inputs.forEach(input => {
+                    const errorSpan = input.nextElementSibling;
+                    if (!input.value.trim()) {
+                        valid = false;
+                        input.classList.add('input-error');
+                        errorSpan.textContent = 'This field is required';
+                    } else {
+                        input.classList.remove('input-error');
+                        errorSpan.textContent = '';
+                    }
+                });
+
+                const emailInput = form.querySelector('input[type="email"]');
+                if (emailInput && !validateEmail(emailInput.value)) {
+                    valid = false;
+                    emailInput.classList.add('input-error');
+                    emailInput.nextElementSibling.textContent = 'Please enter a valid email address';
+                }
+
+                const passwordInput = form.querySelector('input[type="password"]');
+                const confirmPasswordInput = form.querySelector('input[name="confirmPassword"]');
+                if (passwordInput) {
+                    const strength = getPasswordStrength(passwordInput.value);
+                    const strengthSpan = document.getElementById('passwordStrength');
+                    strengthSpan.textContent = `Password strength: ${strength}`;
+                    
+                    if (confirmPasswordInput && passwordInput.value !== confirmPasswordInput.value) {
+                        valid = false;
+                        confirmPasswordInput.classList.add('input-error');
+                        confirmPasswordInput.nextElementSibling.textContent = 'Passwords do not match';
+                    } else if (confirmPasswordInput) {
+                        confirmPasswordInput.classList.remove('input-error');
+                        confirmPasswordInput.nextElementSibling.textContent = '';
+                    }
+                }
+
+                return valid;
+            }
+
+            // Show feedback function
+            function showFeedback(message, type) {
+                feedback.className = type;
+                feedback.textContent = message;
+                feedback.style.display = 'block';
+                setTimeout(() => {
+                    feedback.style.display = 'none';
+                }, 5000);
+            }
+
+            // Password strength function
+            function getPasswordStrength(password) {
+                let strength = 'Weak';
+                if (password.length >= 8) strength = 'Medium';
+                if (password.length >= 12) strength = 'Strong';
+                if (password.length >= 16 && /[\W_]/.test(password)) strength = 'Very Strong';
+                return strength;
+            }
+
+            // Client-side encryption (example using CryptoJS)
+            function encryptPassword(password) {
+                return CryptoJS.AES.encrypt(password, 'secret key 123').toString();
+            }
+
+            // Password encryption before form submission
+            registerForm.addEventListener('submit', function(e) {
+                const passwordInput = document.getElementById('register-password');
+                passwordInput.value = encryptPassword(passwordInput.value);
+            });
+
+            // Auto-focus first input field
+            registerForm.querySelector('input').focus();
+
+            // Enhanced accessibility with focus indicators
+            const style = document.createElement('style');
+            style.innerHTML = `
+                input:focus, button:focus {
+                    outline: 2px solid #0056b3;
+                    outline-offset: 2px;
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
